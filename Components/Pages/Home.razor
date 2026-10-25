@@ -1,5 +1,32 @@
-﻿@page "/"
+@page "/"
+@inject IJSRuntime JS
+@implements IAsyncDisposable
 
-<h1>Hello, world!</h1>
+<canvas id="cv"></canvas>
+<button id="fsBtn" type="button" aria-label="Fullscreen">&#9974;</button>
+<div id="safeAreaProbe" aria-hidden="true"></div>
 
-Welcome to your new app.
+@code {
+    private bool _started;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender || _started) return;
+        _started = true;
+        await JS.InvokeVoidAsync("untGame.start");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (!_started) return;
+        _started = false;
+        try
+        {
+            await JS.InvokeVoidAsync("untGame.stop");
+        }
+        catch (JSDisconnectedException)
+        {
+            // WebView already torn down
+        }
+    }
+}
