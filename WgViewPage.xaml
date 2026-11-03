@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:pro1026005"
+             x:Class="pro1026005.WgViewPage">
+    <ContentPage.Content>
+        <Grid>
+            <!-- 背景图：填充 WebView 加载前/渲染中的空白 -->
+            <Image Source="bg.png" Aspect="AspectFill" />
+
+            <!-- WebView 透明背景，透出下方背景图 -->
+            <WebView x:Name="webView"
+                     BackgroundColor="Transparent"
+                     Navigating="WebView_OnNavigating"
+                     Navigated="WebView_OnNavigated" />
+
+            <!-- Loading 半透明遮罩 + 居中卡片 -->
+            <Grid x:Name="LoadingOverlay" IsVisible="True" InputTransparent="True">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#1A000000" Offset="0" />
+                        <GradientStop Color="#33000000" Offset="1" />
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <Border x:Name="LoadingCard"
+                        StrokeThickness="1"
+                        Stroke="#14FFFFFF"
+                        BackgroundColor="#CC000000"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="28"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                    <VerticalStackLayout Spacing="14">
+                        <local:LoadingDots IsRunning="True"
+                                           DotColor="#FFFFFF"
+                                           HorizontalOptions="Center" />
+                        <Label Text="Loading"
+                               TextColor="#B3FFFFFF"
+                               FontSize="12"
+                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

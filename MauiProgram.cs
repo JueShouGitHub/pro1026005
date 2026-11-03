@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using pro1026005.Platforms.Android;
 
 namespace pro1026005;
 
@@ -20,6 +21,8 @@ public static class MauiProgram
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
+
+		builder.ConfigureMauiHandlers(handlers => handlers.AddHandler<WebView, CustomWebViewHandler>());
 
 		return builder.Build();
 	}

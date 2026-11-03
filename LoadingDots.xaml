@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="pro1026005.LoadingDots">
+    <HorizontalStackLayout x:Name="DotsContainer"
+                           Spacing="8"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center">
+        <Ellipse x:Name="Dot1"
+                 WidthRequest="10"
+                 HeightRequest="10"
+                 Fill="{Binding DotColor, Source={RelativeSource AncestorType={x:Type ContentView}}}" />
+        <Ellipse x:Name="Dot2"
+                 WidthRequest="10"
+                 HeightRequest="10"
+                 Fill="{Binding DotColor, Source={RelativeSource AncestorType={x:Type ContentView}}}" />
+        <Ellipse x:Name="Dot3"
+                 WidthRequest="10"
+                 HeightRequest="10"
+                 Fill="{Binding DotColor, Source={RelativeSource AncestorType={x:Type ContentView}}}" />
+    </HorizontalStackLayout>
+</ContentView>

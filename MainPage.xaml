@@ -3,12 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:pro1026005"
              xmlns:components="clr-namespace:pro1026005.Components"
-             x:Class="pro1026005.MainPage">
-
+             x:Class="pro1026005.MainPage" NavigationPage.HasNavigationBar="False">
+    <Grid>
     <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
             <RootComponent Selector="#app" ComponentType="{x:Type components:Routes}" />
         </BlazorWebView.RootComponents>
     </BlazorWebView>
 
+        <Grid IsVisible="{Binding IsLoading}" InputTransparent="False">
+            <Image Source="bg.png" Aspect="AspectFill" />
+
+            <Border StrokeThickness="1"
+                    Stroke="#33FFFFFF"
+                    BackgroundColor="#CC000000"
+                    StrokeShape="RoundRectangle 24"
+                    Padding="32"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                <VerticalStackLayout Spacing="16">
+                    <local:LoadingDots IsRunning="{Binding IsLoading}"
+                                       DotColor="#FFFFFF"
+                                       HorizontalOptions="Center" />
+                    <Label Text="Loading"
+                           TextColor="#E0E0E0"
+                           FontSize="13"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
 </ContentPage>
