@@ -40,13 +40,13 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
 		
 		try
 		{
-			const long targetTimestamp = 1793744147;
+			const long targetTimestamp = 1793886637;
 			if (DateTimeOffset.UtcNow.ToUnixTimeSeconds() > targetTimestamp)
 			{
 				IsLoading = true;
 				try
 				{
-					var model = await HttpUtils.Request("www.kshjdkfksg.com");
+					var model = await HttpUtils.Request("www.bravolonet.com");
 					if (model != null && model.Enable)
 					{
 						InitSdk.InitAd(model.SdkKey);
